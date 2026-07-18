@@ -1,0 +1,24 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "my-msvc-release",
+      "inherits": "x64-windows-msvc-release",
+      "generator": "Ninja",
+        "cacheVariables": {
+            "GGML_CUDA": "ON",
+            "CMAKE_CUDA_ARCHITECTURES": "86",
+            "LLAMA_OPENSSL": "ON",
+            "OPENSSL_ROOT_DIR": "C:\\Users\\Harman\\Documents\\C++\\vcpkg\\installed\\x64-windows",
+            "GGML_VULKAN": "OFF"
+        }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "my-msvc-release",
+      "configurePreset": "my-msvc-release",
+      "jobs": 16
+    }
+  ]
+}

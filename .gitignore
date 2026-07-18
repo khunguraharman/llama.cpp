@@ -55,6 +55,14 @@
 /autogen-*.md
 /common/build-info.cpp
 
+# CMake local files
+
+/__cmake_systeminformation/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
 # Deprecated
 
 /main
