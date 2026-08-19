@@ -9,7 +9,7 @@
             "GGML_CUDA": "ON",
             "CMAKE_CUDA_ARCHITECTURES": "86",
             "LLAMA_OPENSSL": "ON",
-            "OPENSSL_ROOT_DIR": "C:\\Users\\Harman\\Documents\\C++\\vcpkg\\installed\\x64-windows",
+            "OPENSSL_ROOT_DIR": "C:\\Users\\khung\\Documents\\C++\\vcpkg\\installed\\x64-windows",
             "GGML_VULKAN": "OFF"
         }
     }
