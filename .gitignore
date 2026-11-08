@@ -22,6 +22,12 @@
 *.tmp
 *.DS_Store
 
+# Local files
+
+/LLMs/Qwen3-4B-tokenizer/
+/LLMs/Qwen3-4B_eagle3/
+/can_reuse
+
 # IDE / OS
 
 /.cache/
@@ -48,6 +54,7 @@
 /debug
 /libllama.so
 /llama-*
+!/llama-server-Qwen3-4B-Q8_0.log
 /vulkan-shaders-gen
 /rpc-server
 /out/
