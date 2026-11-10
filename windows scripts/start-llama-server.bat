@@ -1,14 +1,14 @@
 @echo off
 setlocal
 
-set "SERVER=%~dp0build-my-msvc-release\bin\llama-server.exe"
-set "LLAMA_MODEL=%~dp0LLMs\Llama-3.2-3B-Instruct-Q8_0.gguf"
-set "QWEN_MODEL=%~dp0LLMs\Qwen3-4B-Q8_0.gguf"
-set "PHI_MODEL=%~dp0LLMs\Phi-3.5-mini-instruct-Q8_0.gguf"
+set "SERVER=%~dp0..\build-my-msvc-release\bin\llama-server.exe"
+set "LLAMA_MODEL=%~dp0..\LLMs\Llama-3.2-3B-Instruct-Q8_0.gguf"
+set "QWEN_MODEL=%~dp0..\LLMs\Qwen3-4B-Q8_0.gguf"
+set "PHI_MODEL=%~dp0..\LLMs\Phi-3.5-mini-instruct-Q8_0.gguf"
 set "MODEL=%QWEN_MODEL%"
 set "MODEL_ALIAS=qwen"
 for %%F in ("%MODEL%") do set "MODEL_NAME=%%~nF"
-set "LOG_FILE=%~dp0llama-server-%MODEL_NAME%.log"
+set "LOG_FILE=%~dp0..\llama-server-%MODEL_NAME%.log"
 
 if not exist "%SERVER%" (
   echo Could not find "%SERVER%".

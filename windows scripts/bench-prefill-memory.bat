@@ -1,5 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
+cd /d "%~dp0.." || exit /b 1
 
 set "BENCH=build-my-msvc-release\bin\llama-bench.exe"
 

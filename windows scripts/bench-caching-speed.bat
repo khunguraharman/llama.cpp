@@ -1,6 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
-cd /d "%~dp0"
+cd /d "%~dp0.." || exit /b 1
 
 if not defined CONDA_ENV set "CONDA_ENV=llama.cpp.bench"
 if not defined SERVER_EXE set "SERVER_EXE=build-my-msvc-release\bin\llama-server.exe"
