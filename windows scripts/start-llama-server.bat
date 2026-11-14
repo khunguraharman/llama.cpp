@@ -11,8 +11,9 @@ set "MODEL=%QWEN_MODEL%"
 set "MODEL_ALIAS=qwen"
 set "MODEL_ARGS="
 if "%~1"=="/?" (
-  echo Usage: "%~nx0" [qwen^|llama^|phi^|deepseek]
+  echo Usage: "%~nx0" [qwen^|llama^|phi^|deepseek^|deepseek-no-mtp]
   echo With no option, starts Qwen3-4B-Q8_0.
+  echo deepseek enables MTP. deepseek-no-mtp disables MTP.
   exit /b 0
 )
 if /i "%~1"=="llama" (
@@ -25,8 +26,12 @@ if /i "%~1"=="llama" (
   set "MODEL=%DEEPSEEK_MODEL%"
   set "MODEL_ALIAS=deepseek"
   set "MODEL_ARGS=--spec-type draft-mtp --n-predict 3"
+) else if /i "%~1"=="deepseek-no-mtp" (
+  set "MODEL=%DEEPSEEK_MODEL%"
+  set "MODEL_ALIAS=deepseek"
+  set "MODEL_ARGS=--spec-type none"
 ) else if /i not "%~1"=="qwen" if not "%~1"=="" (
-  echo Unknown model "%~1". Choose qwen, llama, phi, or deepseek.
+  echo Unknown model "%~1". Choose qwen, llama, phi, deepseek, or deepseek-no-mtp.
   exit /b 1
 )
 for %%F in ("%MODEL%") do set "MODEL_NAME=%%~nF"
