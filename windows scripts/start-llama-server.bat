@@ -11,10 +11,18 @@ set "MODEL=%QWEN_MODEL%"
 set "MODEL_ALIAS=qwen"
 set "MODEL_ARGS="
 if "%~1"=="/?" (
-  echo Usage: "%~nx0" [qwen^|llama^|phi^|deepseek^|deepseek-no-mtp]
+  echo Usage: "%~nx0" [qwen^|llama^|phi^|deepseek^|deepseek-no-mtp] [--no-cache]
   echo With no option, starts Qwen3-4B-Q8_0.
   echo deepseek enables MTP. deepseek-no-mtp disables MTP.
+  echo --no-cache sets --cache-ram 0 and uses a -no-cache.log suffix.
   exit /b 0
+)
+set "CACHE_RAM=12288"
+if /i "%~1"=="--no-cache" (
+  set "CACHE_RAM=0"
+  shift /1
+) else if /i "%~2"=="--no-cache" (
+  set "CACHE_RAM=0"
 )
 if /i "%~1"=="llama" (
   set "MODEL=%LLAMA_MODEL%"
@@ -35,7 +43,9 @@ if /i "%~1"=="llama" (
   exit /b 1
 )
 for %%F in ("%MODEL%") do set "MODEL_NAME=%%~nF"
-set "LOG_FILE=%~dp0..\llama-server-%MODEL_NAME%.log"
+set "LOG_SUFFIX="
+if "%CACHE_RAM%"=="0" set "LOG_SUFFIX=-no-cache"
+set "LOG_FILE=%~dp0..\llama-server-%MODEL_NAME%%LOG_SUFFIX%.log"
 
 if not exist "%SERVER%" (
   echo Could not find "%SERVER%".
@@ -69,7 +79,7 @@ echo.
   --metrics ^
   --perf ^
   --cache-prompt ^
-  --cache-ram 12288 ^
+  --cache-ram %CACHE_RAM% ^
   --log-timestamps ^
   --log-colors off ^
   --log-verbosity 4 ^
